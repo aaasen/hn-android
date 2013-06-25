@@ -1,5 +1,7 @@
 package com.aaasen.hn;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,14 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class HNArrayAdapter extends ArrayAdapter<Link> {
+public class HNArrayAdapter extends ArrayAdapter<Story> {
 	private final Context context;
-	private final Link[] links;
+	private final List<Story> items;
 
-	public HNArrayAdapter(Context context, Link[] links) {
-		super(context, R.layout.link_preview, links);
+	public HNArrayAdapter(Context context, List<Story> items) {
+		super(context, R.layout.link_preview, items);
 		this.context = context;
-		this.links = links;
+		this.items = items;
 	}
 
 	@Override
@@ -25,10 +27,10 @@ public class HNArrayAdapter extends ArrayAdapter<Link> {
 		View linkView = inflater.inflate(R.layout.link_preview, parent, false);
 	    
 		TextView title = (TextView) linkView.findViewById(R.id.title);
-	    title.setText(links[position].title);
+	    title.setText(items.get(position).title);
 
-		TextView score = (TextView) linkView.findViewById(R.id.score);
-	    score.setText(Integer.toString(links[position].score));
+		TextView score = (TextView) linkView.findViewById(R.id.points);
+	    score.setText(Integer.toString(items.get(position).points));
 	    
 		return linkView;
 

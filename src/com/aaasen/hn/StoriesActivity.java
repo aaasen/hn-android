@@ -1,12 +1,5 @@
 package com.aaasen.hn;
 
-import java.util.ArrayList;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +7,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
 
 public class StoriesActivity extends Activity {
 
@@ -24,20 +19,10 @@ public class StoriesActivity extends Activity {
 		
 		Intent intent = getIntent();
 		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-		Document doc = Jsoup.parse(message);
+		FrontPage data = new Gson().fromJson(message, FrontPage.class);
 		
-		Elements links = doc.select("tr > td.title > a");
-		ArrayList<Link> stories = new ArrayList<Link>();
-		
-		for (Element link : links) {
-			stories.add(new Link(link.attr("href"), "", 123));
-		}
-
-
 		final ListView listview = (ListView) findViewById(R.id.listview);
-
-		final HNArrayAdapter adapter = new HNArrayAdapter(this, stories.toArray(new Link[stories.size()]));
-
+		final HNArrayAdapter adapter = new HNArrayAdapter(this, data.items);
 		listview.setAdapter(adapter);
 
 		listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

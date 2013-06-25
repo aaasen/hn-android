@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
 		FetchTask task = new FetchTask(findViewById(android.R.id.content));
         String[] params = new String[1];
-        params[0] = "https://news.ycombinator.com/";
+        params[0] = "http://api.ihackernews.com/page";
         task.execute(params);
 	}
 	

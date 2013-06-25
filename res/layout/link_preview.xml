@@ -14,10 +14,10 @@
         android:text="@string/link_preview_title" />
 
     <TextView
-        android:id="@+id/score"
+        android:id="@+id/points"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/link_preview_score"
+        android:text="@string/link_preview_points"
         android:layout_alignParentRight="true" />
     
 </RelativeLayout>
