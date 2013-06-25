@@ -32,6 +32,8 @@ public class HNArrayAdapter extends ArrayAdapter<Story> {
 		TextView score = (TextView) linkView.findViewById(R.id.points);
 	    score.setText(Integer.toString(items.get(position).points));
 	    
+	    linkView.setTag(items.get(position));
+	    
 		return linkView;
 
 	}
