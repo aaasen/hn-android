@@ -23,9 +23,13 @@ public class HNArrayAdapter extends ArrayAdapter<Link> {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View linkView = inflater.inflate(R.layout.link_preview, parent, false);
-	    TextView title = (TextView) linkView.findViewById(R.id.title);
+	    
+		TextView title = (TextView) linkView.findViewById(R.id.title);
 	    title.setText(links[position].title);
 
+		TextView score = (TextView) linkView.findViewById(R.id.score);
+	    score.setText(Integer.toString(links[position].score));
+	    
 		return linkView;
 
 	}
